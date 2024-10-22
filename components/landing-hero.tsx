@@ -6,13 +6,14 @@
 import Link from 'next/link'
 import { useAuth } from '@clerk/nextjs'
 import TypewriterComponent from 'typewriter-effect'
-
+import Script from "next/script";
 import { Button } from '@/components/ui/button'
 
 export const LandingHero = () => {
   const { isSignedIn } = useAuth()
 
   return (
+    <>
     <div className="text-white font-bold py-36 text-center space-y-5">
       <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl space-y-5 font-extrabold">
         <h1>Opremi Svoj Sanjski Dom</h1>
@@ -53,5 +54,18 @@ export const LandingHero = () => {
         No credit card required.
       </div> */}
     </div>
+    <Script id="next"
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=G-QCHQ7XGHGJ`}>
+            </Script>
+            <Script id="next">
+                {
+                    `window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'MEASUREMENT-ID');`
+                }
+            </Script>
+    </>
   )
 }
